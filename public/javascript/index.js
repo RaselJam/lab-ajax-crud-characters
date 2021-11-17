@@ -100,6 +100,22 @@ function getInputsElemntsFromEdit() {
 
 	return result
 }
+//This is not tested yet : but it supoesed to replase these two functions : getInputsElemntsFromEdit, getInputsElemntsFromNew
+function getInputsFromAnyForm(form) {
+	let result = {}
+	try {
+		for (let i = 0; i < form.elements.length; i++) {
+			//discardinginputs buttons or any other irrelevante inputs
+			if (form.elements[i].name !== '') {
+				result[form.elements[i].name] = form.elements[i]
+			}
+		}
+	} catch (error) {
+		result.error = error
+		console.log(error)
+	}
+	return result
+}
 //TODO Remove duplicate Code, refactor the above function and this one and make Single generic Function
 function getInputsElemntsFromNew() {
 	let name = document.querySelector('#name-new')
